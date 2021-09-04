@@ -1,0 +1,76 @@
+{
+  "products": [
+    {
+      "id": 1630701143606,
+      "title": "Brera",
+      "category": "accessories",
+      "category_name": "purse",
+      "img": "brera-purse",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "price": 100
+    },
+    {
+      "id": 1630702205836,
+      "title": "T-shirt red",
+      "category": "kids",
+      "category_name": "t-shirts",
+      "img": "kids-tshirt-red",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "price": 200
+    },
+    {
+      "id": 1630702280404,
+      "title": "T-shirt sleeve",
+      "category": "kids",
+      "category_name": "t-shirts",
+      "img": "kids-tshirt-sleeve",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "price": 150
+    },
+    {
+      "id": 1630702331152,
+      "title": "T-shirt print ocean",
+      "category": "mens",
+      "category_name": "t-shirts",
+      "img": "mens-tshirt-ocean",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "price": 300
+    },
+    {
+      "id": 1630702404457,
+      "title": "T-shirt print scuba",
+      "category": "mens",
+      "category_name": "t-shirts",
+      "img": "mens-tshirt-scuba",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "price": 70
+    },
+    {
+      "id": 1630702432140,
+      "title": "Dress mini sleeve",
+      "category": "womans",
+      "category_name": "dresses",
+      "img": "sleeve-mini-dress",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "price": 250
+    },
+    {
+      "id": 1630702482274,
+      "title": "Dress midi sleeve",
+      "category": "womans",
+      "category_name": "dresses",
+      "img": "sleeveless-midi",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "price": 200
+    },
+    {
+      "id": 1630702524896,
+      "title": "Webbing strap purse",
+      "category": "accessories",
+      "category_name": "purse",
+      "img": "webbing-strap-purse",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "price": 50
+    }
+  ]
+}
