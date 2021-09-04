@@ -17,6 +17,7 @@
               lineHeight: '17px',
             }"
             class="card__img__overlay__btn"
+            @click="addProduct(product)"
           >
             <cart-icon class="card__img__overlay__icon" />
             Add to card
@@ -51,6 +52,11 @@ export default {
     products: {
       type: Array,
       required: true
+    }
+  },
+  methods: {
+    addProduct (product) {
+      this.$emit('addToCart', product);
     }
   }
 };

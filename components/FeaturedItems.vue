@@ -9,7 +9,10 @@
           Shop for items based on what we featured in this week
         </p>
       </div>
-      <card-component :products="getProductsList" />
+      <card-component
+        :products="currentProductsList"
+        @addToCart="addProduct"
+      />
       <div class="featureditems__link">
         <NuxtLink to="#" class="featureditems__catalog">
           Browse All Product
@@ -26,9 +29,42 @@ export default {
   components: {
     CardComponent
   },
+  data () {
+    return {
+      perPage: 6,
+      currentPage: 1
+    };
+  },
   computed: {
     getProductsList () {
       return this.$store.getters.getProducts;
+    },
+    startIndex () {
+      return (this.currentPage - 1) * this.perPage;
+    },
+    endIndex () {
+      return this.currentPage * this.perPage;
+    },
+    currentProductsList () {
+      if (this.getProductsList) {
+        return this.getProductsList.slice(this.startIndex, this.endIndex);
+      }
+      return [];
+    },
+    getCart () {
+      return this.$store.getters.getUserCarts;
+    }
+  },
+  methods: {
+    addProduct (product) {
+      const productId = +product.id;
+      const find = this.getCart.find(item => item.id === productId);
+      if (find) {
+        this.$store.dispatch('addOneProduct', product.id);
+      } else {
+        const newProduct = Object.assign({ quantity: 1 }, product);
+        this.$store.dispatch('addProduct', newProduct);
+      }
     }
   }
 };

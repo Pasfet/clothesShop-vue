@@ -11,7 +11,9 @@
         <NuxtLink to="/cart" class="header__right-cart__link">
           <cart-icon class="header__right-cart__icon" />
         </NuxtLink>
-        <span class="header__right-cart__count">5</span>
+        <span class="header__right-cart__count">
+          {{ countCarts }}
+        </span>
       </div>
     </div>
   </header>
@@ -25,6 +27,14 @@ export default {
   components: {
     SearchComponent,
     CartIcon
+  },
+  computed: {
+    countCarts () {
+      return this.$store.getters.getCountCarts;
+    }
+  },
+  async mounted () {
+    await this.$store.dispatch('fetchCarts');
   }
 };
 </script>

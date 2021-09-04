@@ -5,7 +5,7 @@ const router = Router();
 router.get('/products', (req, res) => {
   fs.readFile('api/db/products.json', 'utf-8', (err, data) => {
     if (err) {
-      console.log('errors api products!!!');
+      res.sendStatus(404, JSON.stringify({ result: 0, text: err }));
     } else {
       res.json(data);
     }
