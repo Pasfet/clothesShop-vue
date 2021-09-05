@@ -13,6 +13,9 @@ export const getters = {
   getCountCarts (state) {
     const countGoods = state.userCarts.reduce((acc, cur) => (acc += cur.quantity), 0);
     return countGoods;
+  },
+  getTotalPrice (state) {
+    return state.userCarts.reduce((acc, cur) => (acc += cur.quantity * cur.price), 0);
   }
 };
 
@@ -30,6 +33,18 @@ export const mutations = {
     const find = state.userCarts.find(el => el.id === payloadId);
     if (find) {
       find.quantity++;
+    }
+  },
+  minusOneProductFromUserCarts (state, payloadId) {
+    const find = state.userCarts.find(el => el.id === payloadId);
+    if (find) {
+      find.quantity--;
+    }
+  },
+  removeProductFromUserCarts (state, product) {
+    const findIndex = state.userCarts.findIndex(item => item.id === product.id);
+    if (findIndex) {
+      state.userCarts.splice(findIndex, 1);
     }
   }
 };
@@ -51,10 +66,22 @@ export const actions = {
       commit('addToUserCarts', product);
     }
   },
-  async addOneProduct ({ commit }, productId) {
+  async addOneProduct ({ commit }, productId) { // REFACTOR
     const res = await this.$axios.$put(`/api/carts/${productId}`);
     if (res.result === 1) {
       commit('addToOneProductToUserCarts', productId);
+    }
+  },
+  async minusOneProduct ({ commit }, productId) {
+    const res = await this.$axios.$put(`/api/carts/${productId}/minus`);
+    if (res.result === 1) {
+      commit('minusOneProductFromUserCarts', productId);
+    }
+  },
+  async removeProduct ({ commit }, product) {
+    const res = await this.$axios.$delete(`/api/carts/${product.id}`);
+    if (res.result === 1) {
+      commit('removeProductFromUserCarts', product);
     }
   }
 };

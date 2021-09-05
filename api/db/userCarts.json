@@ -1,16 +1,27 @@
 {
-    "amount": 1100,
-    "countGoods": 4,
+    "amount": 800,
+    "countGoods": 3,
     "products": [
         {
-            "quantity": 3,
+            "quantity": 2,
             "id": 1630702331152,
             "title": "T-shirt print ocean",
             "category": "mens",
             "category_name": "t-shirts",
             "img": "mens-tshirt-ocean",
             "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-            "price": 300
+            "price": 300,
+            "colors": [
+                "red",
+                "white",
+                "black"
+            ],
+            "size": [
+                "s",
+                "m",
+                "xl",
+                "2xl"
+            ]
         },
         {
             "quantity": 1,
@@ -20,7 +31,18 @@
             "category_name": "t-shirts",
             "img": "kids-tshirt-red",
             "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-            "price": 200
+            "price": 200,
+            "colors": [
+                "red",
+                "white",
+                "black"
+            ],
+            "size": [
+                "s",
+                "m",
+                "xl",
+                "2xl"
+            ]
         }
     ]
 }

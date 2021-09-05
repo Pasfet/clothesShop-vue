@@ -33,6 +33,9 @@ export default {
   },
   asyncData ({ store }) {
     return store.dispatch('fetchProducts');
+  },
+  head: {
+    title: 'Home Page | ClothesShop'
   }
 };
 </script>
@@ -52,14 +55,11 @@ body {
   font-family: 'Lato', sans-serif;
 }
 body {
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   font-size: $f_size_14;
 }
-main {
-  flex-grow: 1;
-}
+
 h1,
 h2,
 h3,

@@ -56,7 +56,7 @@ export default {
     }
   },
   methods: {
-    addProduct (product) {
+    addProduct (product) { // REFACTOR
       const productId = +product.id;
       const find = this.getCart.find(item => item.id === productId);
       if (find) {

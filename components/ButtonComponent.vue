@@ -11,11 +11,7 @@ export default {
     styles: {
       type: Object,
       required: false,
-      default: () => ({
-        color: '#000',
-        fontSize: 14,
-        backgroundColor: '#fff'
-      })
+      default: () => ({})
     }
   },
   computed: {

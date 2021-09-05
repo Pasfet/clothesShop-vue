@@ -21,4 +21,12 @@ router.put('/carts/:id', (req, res) => {
   handlerCarts(req, res, 'addOne', 'api/db/userCarts.json');
 });
 
+router.put('/carts/:id/minus', (req, res) => {
+  handlerCarts(req, res, 'minusOne', 'api/db/userCarts.json');
+});
+
+router.delete('/carts/:id', (req, res) => {
+  handlerCarts(req, res, 'delete', 'api/db/userCarts.json');
+});
+
 module.exports = router;

@@ -7,7 +7,9 @@
       "category_name": "purse",
       "img": "brera-purse",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      "price": 100
+      "price": 100,
+      "color": ["red", "white", "black"],
+      "size": ["s", "m", "xl", "2xl"]
     },
     {
       "id": 1630702205836,
@@ -16,7 +18,9 @@
       "category_name": "t-shirts",
       "img": "kids-tshirt-red",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      "price": 200
+      "price": 200,
+      "colors": ["red", "white", "black"],
+      "size": ["s", "m", "xl", "2xl"]
     },
     {
       "id": 1630702280404,
@@ -25,7 +29,9 @@
       "category_name": "t-shirts",
       "img": "kids-tshirt-sleeve",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      "price": 150
+      "price": 150,
+      "colors": ["red", "white", "black"],
+      "size": ["s", "m", "xl", "2xl"]
     },
     {
       "id": 1630702331152,
@@ -34,7 +40,9 @@
       "category_name": "t-shirts",
       "img": "mens-tshirt-ocean",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      "price": 300
+      "price": 300,
+      "colors": ["red", "white", "black"],
+      "size": ["s", "m", "xl", "2xl"]
     },
     {
       "id": 1630702404457,
@@ -43,7 +51,9 @@
       "category_name": "t-shirts",
       "img": "mens-tshirt-scuba",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      "price": 70
+      "price": 70,
+      "colors": ["red", "white", "black"],
+      "size": ["s", "m", "xl", "2xl"]
     },
     {
       "id": 1630702432140,
@@ -52,7 +62,9 @@
       "category_name": "dresses",
       "img": "sleeve-mini-dress",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      "price": 250
+      "price": 250,
+      "colors": ["red", "white", "black"],
+      "size": ["s", "m", "xl", "2xl"]
     },
     {
       "id": 1630702482274,
@@ -61,7 +73,9 @@
       "category_name": "dresses",
       "img": "sleeveless-midi",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      "price": 200
+      "price": 200,
+      "colors": ["red", "white", "black"],
+      "size": ["s", "m", "xl", "2xl"]
     },
     {
       "id": 1630702524896,
@@ -70,7 +84,9 @@
       "category_name": "purse",
       "img": "webbing-strap-purse",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      "price": 50
+      "price": 50,
+      "colors": ["red", "white", "black"],
+      "size": ["s", "m", "xl", "2xl"]
     }
   ]
 }
