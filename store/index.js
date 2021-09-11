@@ -1,11 +1,15 @@
 export const state = () => ({
   productsList: [],
+  searchList: [],
   userCarts: []
 });
 
 export const getters = {
   getProducts (state) {
     return state.productsList;
+  },
+  getSearchList (state) {
+    return state.searchList;
   },
   getUserCarts (state) {
     return state.userCarts;
@@ -22,6 +26,9 @@ export const getters = {
 export const mutations = {
   setProductsList (state, payload) {
     state.productsList = payload;
+  },
+  setSearchList (state, payload) {
+    state.searchList = payload;
   },
   setUserCarts (state, payload) {
     state.userCarts = payload;
@@ -54,6 +61,7 @@ export const actions = {
     const res = await this.$axios.$get('/api/products');
     const json = await JSON.parse(res);
     commit('setProductsList', json.products);
+    commit('setSearchList', json.products);
   },
   async fetchCarts ({ commit }) {
     const res = await this.$axios.$get('/api/carts');

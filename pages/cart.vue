@@ -1,71 +1,57 @@
 <template>
   <div>
     <header-component />
-    <breadcrumb-component class="cart__breadcrumb" :align-start="isDesktop">
+    <breadcrumb-component class="cart__breadcrumb">
       shopping cart
     </breadcrumb-component>
     <main>
-      <div class="container cart__wrap">
-        <div class="cart__inner">
-          <article v-for="product in getUserCarts" :key="product.id" class="cart__card">
-            <div class="cart__card__img">
-              <img :src="require(`~/assets/products/${product.img}.jpg`)" :alt="product.title" />
+      <div class="max-w-5xl mx-auto cart__wrap grid grid-cols-1 gap-7 bg-white pt-10 px-2 pb-20 lg:grid-cols-3">
+        <div class="cart__inner grid gap-7 lg:col-start-1 lg:col-end-3">
+          <article v-for="product in getUserCarts" :key="product.id" class="cart__card flex relative shadow-md">
+            <div class="cart__card__img w-140 h-full md:w-260">
+              <img :src="require(`~/assets/products/${product.img}.jpg`)" :alt="product.title" class="block w-inherit h-inherit object-cover" />
             </div>
-            <div class="cart__card__content">
-              <button-component class="cart__card__content__icon" :styles="{border: 'none', background: 'transparent'}" @click="removeProduct(product)">
-                <close-icon />
+            <div class="cart__card__content flex flex-col justify-around items-start pt-4 pr-7 pb-2 pl-2 md:justify-between md:pt-4 md:px-7 md:mb-5">
+              <button-component class="cart__card__content__icon border-none bg-transparent absolute top-2 right-2 cursor-pointer" @click="removeProduct(product)">
+                <close-icon class="md:w-20px md:h-20px" />
               </button-component>
-              <div class="cart__card__head">
-                <h3 class="cart__card__title">
+              <div class="cart__card__head mb-5 uppercase md:mb-10">
+                <h3 class="cart__card__title text-sm text-black md:text-2xl">
                   {{ product.title }}
                 </h3>
                 <span class="cart__card__category">
                   {{ product.category_name }}
                 </span>
               </div>
-              <ul class="cart__card__list">
-                <li class="cart__card__item">
+              <ul class="cart__card__list w-160 md:mb-auto md:w-260">
+                <li class="cart__card__item flex justify-between text-sm text-gray-500 capitalize mb-2 md:text-xl md:mb-3">
                   price:
-                  <span class="cart__card__item__price">
+                  <span class="cart__card__item__price text-primary">
                     {{ product.price }}$
                   </span>
                 </li>
-                <li class="cart__card__item">
+                <li class="cart__card__item flex justify-between text-sm text-gray-500 capitalize mb-2 md:text-xl md:mb-3">
                   color:
                   <select-component :options="product.colors" :default="product.colors[0]" @input="select" />
                 </li>
-                <li class="cart__card__item">
+                <li class="cart__card__item flex justify-between text-sm text-gray-500 capitalize mb-2 md:text-xl md:mb-3">
                   size:
                   <select-component :options="product.size" :default="product.size[0]" @input="select" />
                 </li>
-                <li class="cart__card__item">
+                <li class="cart__card__item flex justify-between text-sm text-gray-500 capitalize mb-0 md:text-xl md:mb-3">
                   quantity:
-                  <div class="cart__card__item__actions">
+                  <div class="cart__card__item__actions flex items-center">
                     <button-component
-                      :styles="{
-                        cursor: 'pointer',
-                        backgroundColor: '#000',
-                        border: '1px solid #000',
-                        color: '#fff',
-                        fontSize: '25px',
-                        lineHeight: '25px'
-                      }"
+                      class="cursor-pointer bg-black border-1 border-black w-25 h-25 text-25 line-height-25 text-white transition duration-500 hover:bg-white hover:text-black md:w-32px md:h-32px"
                       @click="minusProduct(product)"
                     >
                       -
                     </button-component>
-                    <span class="cart__card__category">
+                    <span class="cart__card__category mx-2">
                       {{ product.quantity }}
                     </span>
                     <button-component
-                      :styles="{
-                        cursor: 'pointer',
-                        backgroundColor: '#000',
-                        border: '1px solid #000',
-                        color: '#fff',
-                        fontSize: '25px',
-                        lineHeight: '25px'
-                      }"
+                      class="cursor-pointer bg-black border-1 border-black w-25 h-25 text-25 line-height-25 text-white transition duration-500 hover:bg-white hover:text-black md:w-32px md:h-32px"
                       @click="addProduct(product.id)"
                     >
                       +
@@ -75,38 +61,38 @@
               </ul>
             </div>
           </article>
-          <div class="cart__actions">
-            <button-component>
+          <div class="cart__actions text-center md:mr-11">
+            <button-component class="mr-2 text-xs text-gray-500 py-2 px-4 border-1 border-gray-500 cursor-pointer bg-transparent transition duration-500 hover:bg-black hover:text-white ease-out md:text-sm md:uppercase">
               Clear shopping cart
             </button-component>
-            <button-component>
+            <button-component class="mr-0 text-xs text-gray-500 py-2 px-4 border-1 border-gray-500 cursor-pointer bg-transparent transition duration-500 hover:bg-black hover:text-white ease-out md:text-sm md:uppercase">
               Continue shopping
             </button-component>
           </div>
         </div>
-        <form action="#" class="cart__form">
-          <div class="cart__form__address">
-            <h2 class="cart__form__heading">
+        <form action="#" class="cart__form flex flex-col md:flex-row lg:flex-col">
+          <div class="cart__form__address flex flex-col mb-12 md:flex-grow md:mr-3 lg:flex-grow-0">
+            <h2 class="cart__form__heading uppercase text-black font-light text-base mb-5">
               shipping adress
             </h2>
-            <input class="cart__form__input" type="text" placeholder="Bangladesh" />
-            <input class="cart__form__input" type="text" placeholder="State" />
-            <input class="cart__form__input" type="number" placeholder="Postcode / Zip" />
-            <button-component class="cart__form__btn">
+            <input class="cart__form__input border-1 border-gray-600 text-base pt-3 px-4 pb-4 mb-5" type="text" placeholder="Bangladesh" />
+            <input class="cart__form__input border-1 border-gray-600 text-base pt-3 px-4 pb-4 mb-5" type="text" placeholder="State" />
+            <input class="cart__form__input border-1 border-gray-600 text-base pt-3 px-4 pb-4 mb-5" type="number" placeholder="Postcode / Zip" />
+            <button-component class="cart__form__btn text-sm self-start border-1 border-gray-600 py-2 px-5 cursor-pointer bg-transparent transition duration-500 ease-in-out hover:bg-black hover:text-white">
               Get a quote
             </button-component>
           </div>
-          <div class="cart__check">
-            <div class="cart__check__total">
+          <div class="cart__check bg-check-color py-10 px-11 text-right uppercase text-black font-bold md:self-start">
+            <div class="cart__check__total text-sm mb-3">
               <span class="cart__check__total-text">sub total</span>
-              <span class="cart__check__total-price">${{ getFullTotalPrice }}</span>
+              <span class="cart__check__total-price ml-6">${{ getFullTotalPrice }}</span>
             </div>
-            <div class="cart__check__grand">
+            <div class="cart__check__grand font-bold text-black text-base mb-5">
               <span class="cart__check__grand-text">grand total</span>
-              <span class="cart__check__grand-price">${{ getFullTotalPrice }}</span>
+              <span class="cart__check__grand-price text-primary ml-6">${{ getFullTotalPrice }}</span>
             </div>
-            <div class="cart__check__hr"></div>
-            <button-component class="cart__check__btn">
+            <div class="cart__check__hr min-w-275 h-1 bg-gray-300 mb-5"></div>
+            <button-component class="cart__check__btn uppercase bg-primary text-white py-4 px-10 border-1 border-transparent cursor-pointer transition duration-500 hover:text-primary hover:border-primary hover:bg-white">
               proceed to checkout
             </button-component>
           </div>
@@ -119,23 +105,11 @@
 </template>
 
 <script>
-import SelectComponent from '@/components/SelectComponent.vue';
-import HeaderComponent from '@/components/HeaderComponent.vue';
-import BreadcrumbComponent from '@/components/BreadcrumbComponent.vue';
-import FeedbackBlock from '@/components/FeedbackBlock.vue';
-import FooterComponent from '@/components/FooterComponent.vue';
-import ButtonComponent from '@/components/ButtonComponent.vue';
 import CloseIcon from '@/assets/cart/close.svg?inline';
 export default {
   name: 'CartPage',
   components: {
-    HeaderComponent,
-    BreadcrumbComponent,
-    FeedbackBlock,
-    FooterComponent,
-    ButtonComponent,
-    CloseIcon,
-    SelectComponent
+    CloseIcon
   },
   asyncData ({ store }) {
     return store.dispatch('fetchCarts');
@@ -192,303 +166,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss" scoped>
-$primary: #f16d7f;
-$dark: #222222;
-$item-color: #575757;
-$check-color: #f5f3f3;
-$hr-color: #e2e2e2;
-$width-img-375: 140px;
-$width-img-768: 260px;
-$f_size-12: 12px;
-$f_size-14: 14px;
-$f_size-16: 16px;
-$f_size-22: 22px;
-$f_size-24: 24px;
-$l_height-14: 14px;
-$l_height-17: 17px;
-$l_height-19: 19px;
-$l_height-26: 26px;
-$l_height-29: 29px;
-$transition-speed: .3s;
-
-ul {
-  margin: 0;
-  padding: 0;
-}
-
-.cart {
-  &__wrap {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    grid-gap: 30px;
-    background-color: #fff;
-    padding: 40px 10px 100px;
-  }
-  &__inner {
-    display: grid;
-    grid-gap: 30px;
-  }
-  &__card {
-    display: flex;
-    position: relative;
-    box-shadow: 2px 2px 15px 0px rgba(0,0,0, .13);
-    &__img {
-      width: $width-img-375;
-      height: 100%;
-      img {
-        display: block;
-        width: inherit;
-        height: inherit;
-        object-fit: cover;
-      }
-    }
-    &__content {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-      align-items: flex-start;
-      padding: 15px 30px 10px 10px;
-      &__icon {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        &:hover {
-          cursor: pointer;
-        }
-      }
-    }
-    &__head {
-      margin-bottom: 20px;
-      text-transform: uppercase;
-    }
-    &__title {
-      font-size: $f_size-14;
-      line-height: $l_height-17;
-      color: $dark;
-    }
-    &__list {
-      width: 160px;
-    }
-    &__item {
-      display: flex;
-      justify-content: space-between;
-      font-size: $f_size-14;
-      line-height: $l_height-17;
-      color: $item-color;
-      text-transform: capitalize;
-      margin-bottom: 10px;
-      &:last-child {
-        margin-bottom: 0;
-      }
-      &__price {
-        color: $primary;
-      }
-      &__actions {
-        display: flex;
-        align-items: center;
-        button {
-          transition: background-color $transition-speed linear, color $transition-speed linear;
-          &:hover {
-            background-color: #fff !important;
-            color: $dark !important;
-          }
-        }
-        span {
-          margin: 0 10px;
-        }
-      }
-    }
-  }
-  &__actions {
-    text-align: center;
-    button {
-      margin-right: 10px;
-      font-size: $f_size-12;
-      line-height: $l_height-14;
-      color: $item-color;
-      padding: 10px 16px;
-      border: 1px solid $item-color;
-      cursor: pointer;
-      background-color: transparent;
-      transition: background-color $transition-speed linear, color $transition-speed linear;
-      &:last-child {
-        margin-right: 0;
-      }
-      &:hover {
-        background-color: $dark !important;
-        color: #fff !important;
-      }
-    }
-  }
-  &__form {
-    display: flex;
-    flex-direction: column;
-    &__heading {
-      text-transform: uppercase;
-      color: $dark;
-      font-weight: 300;
-      font-size: $f_size-16;
-      line-height: $l_height-19;
-      margin-bottom: 20px;
-    }
-    &__address {
-      display: flex;
-      flex-direction: column;
-      margin-bottom: 50px;
-    }
-    &__input {
-      font-family: 'Lato', sans-serif;
-      border: 1px solid $item-color;
-      font-size: $f_size-16;
-      line-height: $l_height-19;
-      font-weight: 300;
-      padding: 13px 16px 16px;
-      margin-bottom: 20px;
-      &::placeholder {
-        font-family: 'Lato', sans-serif;
-        font-size: $f_size-16;
-        line-height: $l_height-19;
-        color: $item-color;
-        font-weight: 300;
-      }
-    }
-    &__btn {
-      font-size: $f_size-14;
-      line-height: $l_height-19;
-      align-self: flex-start;
-      border: 1px solid $item-color;
-      padding: 11px 20px;
-      cursor: pointer;
-      background-color: transparent;
-      transition: background-color $transition-speed linear, color $transition-speed linear;
-      &:hover {
-        background-color: $dark !important;
-        color: #fff !important;
-      }
-    }
-  }
-  &__check {
-    background: $check-color;
-    padding: 40px 42px;
-    text-align: right;
-    text-transform: uppercase;
-    color: $dark;
-    font-weight: 700;
-    &__total {
-      font-size: $f_size-14;
-      line-height: $l_height-19;
-      margin-bottom: 12px;
-      &-price {
-          margin-left: 25px;
-      }
-    }
-    &__grand {
-      font-weight: 700;
-      color: $dark;
-      font-size: $f_size-16;
-      line-height: $l_height-19;
-      margin-bottom: 20px;
-      &-price {
-          color: $primary;
-          margin-left: 25px;
-      }
-    }
-    &__hr {
-      min-width: 275px;
-      height: 1px;
-      background: $hr-color;
-      margin-bottom: 20px;
-    }
-    &__btn {
-      text-transform: uppercase;
-      background-color: $primary;
-      color: #fff;
-      padding: 16px 42px;
-      border: 1px solid transparent;
-      cursor: pointer;
-      transition: border $transition-speed linear, color $transition-speed linear, background-color $transition-speed linear;
-      &:hover {
-        color: $primary !important;
-        border: 1px solid $primary !important;
-        background-color: #fff !important;
-      }
-    }
-  }
-}
-@media (min-width: 768px) {
-  .cart {
-    &__card {
-      &__img {
-        width: $width-img-768;
-      }
-      &__head {
-        margin-bottom: 40px;
-      }
-      &__content {
-        justify-content: space-between;
-        padding: 15px 30px 30px 20px;
-        &__icon {
-          svg {
-            width: 20px;
-            height: 20px;
-          }
-        }
-      }
-      &__title {
-        font-size: $f_size-24;
-        line-height: $l_height-29;
-      }
-      &__list {
-        margin-bottom: auto;
-        width: 260px;
-      }
-      &__item {
-        font-size: $f_size-22;
-        line-height: $l_height-26;
-        margin-bottom: 15px;
-        label {
-          input {
-            width: 100px;
-          }
-        }
-      }
-    }
-    &__actions {
-      margin-right: 45px;
-      button {
-        font-size: $f_size-14;
-        line-height: $l_height-17;
-        text-transform: uppercase;
-      }
-    }
-    &__form {
-      flex-direction: row;
-      &__address {
-        flex-grow: 1;
-        margin-right: 15px;
-      }
-    }
-    &__check {
-      align-self: flex-start;
-    }
-  }
-}
-@media (min-width: 1024px) {
-  .cart {
-    &__wrap {
-      grid-template-columns: repeat(3, 1fr);
-    }
-    &__inner {
-      grid-column: 1 / 3;
-    }
-    &__form {
-      flex-direction: column;
-      &__address {
-        flex-grow: 0;
-      }
-    }
-  }
-}
-</style>

@@ -31,13 +31,14 @@ export default {
   plugins: [],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
-  components: false,
+  components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
-    '@nuxtjs/svg'
+    '@nuxtjs/svg',
+    '@nuxtjs/tailwindcss'
   ],
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [

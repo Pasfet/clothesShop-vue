@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="flex flex-col min-h-screen flex-grow">
     <header-component />
     <main>
       <index-intro />
@@ -13,24 +13,8 @@
 </template>
 
 <script>
-import HeaderComponent from '@/components/HeaderComponent.vue';
-import IndexIntro from '@/components/IndexIntro.vue';
-import OfferComponent from '@/components/OfferComponent.vue';
-import FeaturedItems from '@/components/FeaturedItems.vue';
-import AdvantagesBlock from '@/components/AdvantagesBlock.vue';
-import FeedbackBlock from '@/components/FeedbackBlock.vue';
-import FooterComponent from '@/components/FooterComponent.vue';
 export default {
   name: 'IndexPage',
-  components: {
-    HeaderComponent,
-    IndexIntro,
-    OfferComponent,
-    FeaturedItems,
-    AdvantagesBlock,
-    FeedbackBlock,
-    FooterComponent
-  },
   asyncData ({ store }) {
     return store.dispatch('fetchProducts');
   },
@@ -40,9 +24,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
-$f_size_14: 14px;
-
+<style>
 *,
 *::before,
 *::after {
@@ -54,12 +36,6 @@ body {
   padding: 0;
   font-family: 'Lato', sans-serif;
 }
-body {
-  display: flex;
-  flex-direction: column;
-  font-size: $f_size_14;
-}
-
 h1,
 h2,
 h3,
@@ -75,10 +51,5 @@ li {
   list-style-type: none;
   margin: 0;
   padding: 0;
-}
-.container {
-  max-width: 1140px;
-  margin: 0 auto;
-  padding: 15px;
 }
 </style>

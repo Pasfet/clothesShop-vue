@@ -1,20 +1,20 @@
 <template>
-  <section class="featureditems">
-    <div class="container">
-      <div class="featureditems__head">
-        <h3 class="featureditems__head__heading">
+  <section>
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-16">
+        <h3 class="text-xl capitalize">
           Fetured Items
         </h3>
-        <p class="featureditems__head__text">
+        <p class="text-featured-text text-sm">
           Shop for items based on what we featured in this week
         </p>
       </div>
       <card-component
         :products="currentProductsList"
-        @addToCart="addProduct"
+        @add-to-cart="addProduct"
       />
-      <div class="featureditems__link">
-        <NuxtLink to="#" class="featureditems__catalog">
+      <div class="text-center mt-14 mb-28">
+        <NuxtLink to="#" class="inline-block no-underline text-base text-primary py-4 px-10 border-1 border-primary transition duration-500 hover:text-white hover:bg-primary">
           Browse All Product
         </NuxtLink>
       </div>
@@ -23,12 +23,8 @@
 </template>
 
 <script>
-import CardComponent from '@/components/CardComponent.vue';
 export default {
   name: 'FeaturedItems',
-  components: {
-    CardComponent
-  },
   data () {
     return {
       perPage: 6,
@@ -69,71 +65,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss" scoped>
-$text-color: #9f9f9f;
-$catalog-color: #f26376;
-$f_size-14: 14px;
-$f_size-16: 16px;
-$f_size-30: 30px;
-$l_height-17: 17px;
-$l_height-19: 19px;
-$l_height-36: 36px;
-$transition-speed: .3s;
-
-.featureditems {
-  &__head {
-    text-align: center;
-    margin-bottom: 65px;
-    &__heading {
-      font-size: $f_size-30;
-      line-height: $l_height-36;
-      text-transform: capitalize;
-    }
-    &__text {
-      color: $text-color;
-      font-size: $f_size-14;
-      line-height: $l_height-36;
-    }
-  }
-  &__wrap {
-    display: grid;
-    grid-gap: 15px;
-    grid-template-columns: repeat(1, 1fr);
-    justify-items: center;
-  }
-  &__link {
-    text-align: center;
-    margin: 55px 0 110px;
-  }
-  &__catalog {
-    display: inline-block;
-    text-decoration: none;
-    font-size: $f_size-16;
-    line-height: $l_height-19;
-    color: $catalog-color;
-    padding: 15px 40px;
-    border: 1px solid $catalog-color;
-    transition: background-color $transition-speed linear, color $transition-speed linear;
-    &:hover {
-      background-color: $catalog-color;
-      color: #fff;
-    }
-  }
-}
-@media (min-width: 768px) {
-  .featureditems {
-    &__wrap {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-}
-@media (min-width: 1440px) {
-  .featureditems {
-    &__wrap {
-      grid-gap: 30px;
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-}
-</style>

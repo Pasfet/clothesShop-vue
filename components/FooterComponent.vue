@@ -1,21 +1,12 @@
 <template>
-  <footer class="footer">
-    <div class="container footer__wrap">
-      <div class="social">
-        <a href="#" class="social__link">
-          <facebook-icon class="social__icon" />
-        </a>
-        <a href="#" class="social__link">
-          <instagram-icon class="social__icon" />
-        </a>
-        <a href="#" class="social__link">
-          <pinterest-icon class="social__icon" />
-        </a>
-        <a href="#" class="social__link">
-          <twitter-icon class="social__icon" />
+  <footer class="mt-auto bg-gray-900 pt-11 pb-3 text-center md:py-4">
+    <div class="max-w-5xl mx-auto md:flex md:justify-between md:items-center md:px-4">
+      <div class="flex justify-center items-center mb-10 md:mb-0 md:order-1">
+        <a v-for="social in $options.socials" :key="social.social" href="#" class="flex items-center justify-center w-32px h-32px bg-white mr-2 last:mr-0 transition duration-500 hover:bg-primary">
+          <component :is="social.icon" class="fill-black" />
         </a>
       </div>
-      <div class="footer__copy">
+      <div class="text-white text-base">
         &copy;2021  Brand  All Rights Reserved.
       </div>
     </div>
@@ -34,70 +25,12 @@ export default {
     InstagramIcon,
     PinterestIcon,
     TwitterIcon
-  }
+  },
+  socials: [
+    { social: 'facebook', icon: 'FacebookIcon' },
+    { social: 'instagram', icon: 'InstagramIcon' },
+    { social: 'pinterest', icon: 'PinterestIcon' },
+    { social: 'twitter', icon: 'TwitterIcon' }
+  ]
 };
 </script>
-
-<style lang="scss" scoped>
-$primary: #f16d7f;
-$bg-footer: #222224;
-$transition-speed: .3s;
-$f_size-16: 16px;
-$l_height-19: 19px;
-
-.footer {
-  margin-top: auto;
-  background-color: $bg-footer;
-  padding: 45px 0 10px;
-  text-align: center;
-  &__copy {
-    color: #fff;
-    font-size: $f_size-16;
-    line-height: $l_height-19;
-  }
-}
-.social {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 40px;
-  &__link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    background-color: #fff;
-    margin-right: 10px;
-    transition: background-color $transition-speed linear;
-    &:last-child {
-      margin-right: 0;
-    }
-    &:hover {
-      background-color: $primary;
-    }
-    &:hover .social__icon {
-      fill: #fff;
-    }
-  }
-  &__icon {
-    transition: fill $transition-speed linear;
-    fill: #000;
-  }
-}
-
-@media (min-width: 768px) {
-  .footer {
-    padding: 15px 0;
-    &__wrap {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-  }
-  .social {
-    margin-bottom: 0;
-    order: 1;
-  }
-}
-</style>

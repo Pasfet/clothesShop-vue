@@ -1,37 +1,27 @@
 <template>
-  <section class="feedback">
-    <div class="container feedback__wrap">
-      <div class="feedback__left">
-        <figure class="feedback__left__avatar">
-          <img src="~/assets/feedback/feedback-avatar.png" alt="avatar" />
-          <figcaption class="feedback__left__description">
+  <section class="bg-feedback-bg bg-no-repeat bg-cover bg-feedback-pos-sm py-14 md:bg-feedback-pos-md">
+    <div class="max-w-5xl mx-auto lg:flex lg:justify-between lg:items-center">
+      <div class="mb-14">
+        <figure class="mx-auto max-w-xs text-center">
+          <img src="~/assets/feedback/feedback-avatar.png" alt="avatar" width="90" height="90" class="w-90 h-90 mx-auto mb-7" />
+          <figcaption class="text-black text-lg max-w-360 mx-auto">
             “Vestibulum quis porttitor dui! Quisque viverra nunc mi, a pulvinar purus condimentum“
           </figcaption>
         </figure>
       </div>
-      <div class="feedback__right">
-        <div class="feedback__right__head">
-          <h4 class="feedback__right__heading">
+      <div class="text-center">
+        <div class="uppercase text-black mb-5">
+          <h4 class="text-2xl font-bold">
             subscribe
           </h4>
-          <p class="feedback__right__description">
+          <p class="text-sm">
             for our newletter and promotion
           </p>
         </div>
-        <form class="feedback__sibscribe">
-          <input type="email" class="feedback__sibscribe__input" placeholder="Enter Your Email" />
+        <form>
+          <input type="email" class="-mr-1 py-3 px-3 opacity-70 text-black bg-feedback-subs-color rounded-tl-3xl rounded-bl-3xl border-none" placeholder="Enter Your Email" />
           <button-component
-            :styles="{
-              padding: '14px',
-              fontSize: '14px',
-              lineHeight: '17px',
-              textTransform: 'capitalize',
-              borderTopRightRadius: '25px',
-              borderBottomRightRadius: '25px',
-              border: '1px solid #f16d7f',
-              cursor: 'pointer'
-            }"
-            class="feedback__sibscribe__btn"
+            class="p-3 text-sm capitalize rounded-tr-3xl rounded-br-3xl border-1 border-primary bg-primary text-white transition duration-500 hover:text-primary hover:bg-white"
           >
             Subscribe
           </button-component>
@@ -42,96 +32,7 @@
 </template>
 
 <script>
-import ButtonComponent from '@/components/ButtonComponent.vue';
 export default {
-  name: 'FeedbackBlock',
-  components: {
-    ButtonComponent
-  }
+  name: 'FeedbackBlock'
 };
 </script>
-
-<style lang="scss" scoped>
-$primary: #f16d7f;
-$text-color: #222224;
-$f_size-14: 14px;
-$f_size-18: 18px;
-$f_size-24: 24px;
-$l_height-22: 22px;
-$l_height-37: 37px;
-$transition-speed: .3s;
-
-.feedback {
-  background-image: url('~/assets/feedback/bg-feedback.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: -400px 0;
-  padding: 60px 0;
-  &__left {
-    margin-bottom: 60px;
-    &__avatar {
-      margin: 0 auto;
-      max-width: 340px;
-      text-align: center;
-      img {
-        width: 90px;
-        height: 90px;
-        margin-bottom: 30px;
-      }
-    }
-    &__description {
-      color: $text-color;
-      font-size: $f_size-18;
-      line-height: $l_height-22;
-    }
-  }
-  &__right {
-    text-align: center;
-    &__head {
-      text-transform: uppercase;
-      color: $text-color;
-      margin-bottom: 20px;
-    }
-    &__heading {
-      font-size: $f_size-24;
-      line-height: $l_height-37;
-      font-weight: 700;
-    }
-    &__description {
-      font-size: $f_size-14;
-      line-height: $l_height-22;
-    }
-  }
-  &__sibscribe {
-    &__input {
-      margin-right: -2px;
-      padding: 16px 20px;
-      opacity: .67;
-      color: $text-color;
-      background-color: #e1e1e1;
-      border-top-left-radius: 25px;
-      border-bottom-left-radius: 25px;
-      border: none;
-    }
-    &__btn {
-      background-color: $primary;
-      color: #fff;
-      transition: background-color $transition-speed linear, color $transition-speed linear;
-      &:hover {
-        color: $primary;
-        background-color: #fff;
-      }
-    }
-  }
-}
-@media (min-width: 1024px) {
-  .feedback {
-    background-position: 0 0;
-    &__wrap {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-  }
-}
-</style>
