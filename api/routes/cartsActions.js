@@ -43,9 +43,17 @@ const removeProduct = (cart, req) => {
   return JSON.stringify(cart, null, 4);
 };
 
+const deleteCarts = (cart, req) => {
+  cart.products = [];
+  amount(cart);
+  countGoods(cart);
+  return JSON.stringify(cart, null, 4);
+};
+
 module.exports = {
   add,
   addOneProduct,
   minusOneProduct,
-  removeProduct
+  removeProduct,
+  deleteCarts
 };

@@ -1,6 +1,6 @@
 <template>
   <div class="grid gap-4 grid-cols-1 justify-items-center md:grid-cols-2 2xl:gap-7 2xl:grid-cols-offer">
-    <article v-for="product in products" :key="product.id" class="bg-featured-card max-w-360">
+    <article v-for="product in products" :key="product.id" class="bg-featured-card max-w-360 transition duration-500 hover:shadow-lg transform hover:scale-95">
       <div class="w-360 h-420 relative transition group-hover duration-500">
         <img :src="require(`~/assets/products/${product.img}.jpg`)" :alt="product.title" width="360" height="420" class="block w-inherit h-inherit object-cover" />
         <div class="absolute top-0 right-0 bottom-0 left-0 flex items-center justify-center opacity-0 bg-gray-700 group hover:opacity-80 transition duration-500 ease-in-out">

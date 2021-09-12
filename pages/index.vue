@@ -1,7 +1,8 @@
 <template>
   <div class="flex flex-col min-h-screen flex-grow">
     <header-component />
-    <main>
+    <spinner-component v-if="loading" />
+    <main v-show="!loading">
       <index-intro />
       <offer-component />
       <featured-items />
@@ -18,8 +19,16 @@ export default {
   asyncData ({ store }) {
     return store.dispatch('fetchProducts');
   },
+  data () {
+    return {
+      loading: true
+    };
+  },
   head: {
-    title: 'Home Page | ClothesShop'
+    title: 'Home'
+  },
+  mounted () {
+    this.loading = false;
   }
 };
 </script>

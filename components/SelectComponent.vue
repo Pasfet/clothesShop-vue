@@ -40,7 +40,7 @@ export default {
   },
   data () {
     return {
-      selected: this.default
+      selected: this.default !== undefined
         ? this.default
         : this.options.length > 0
           ? this.options[0]

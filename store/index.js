@@ -50,9 +50,12 @@ export const mutations = {
   },
   removeProductFromUserCarts (state, product) {
     const findIndex = state.userCarts.findIndex(item => item.id === product.id);
-    if (findIndex) {
+    if (findIndex !== undefined) {
       state.userCarts.splice(findIndex, 1);
     }
+  },
+  clearUserCarts (state) {
+    state.userCarts = [];
   }
 };
 
@@ -90,6 +93,12 @@ export const actions = {
     const res = await this.$axios.$delete(`/api/carts/${product.id}`);
     if (res.result === 1) {
       commit('removeProductFromUserCarts', product);
+    }
+  },
+  async clearCarts ({ commit }) {
+    const res = await this.$axios.$post('/api/carts/deleteCarts');
+    if (res.result === 1) {
+      commit('clearUserCarts');
     }
   }
 };

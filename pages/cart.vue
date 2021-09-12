@@ -1,12 +1,14 @@
 <template>
   <div>
     <header-component />
-    <breadcrumb-component class="cart__breadcrumb">
-      shopping cart
-    </breadcrumb-component>
+    <breadcrumb-component :path="path" />
     <main>
       <div class="max-w-5xl mx-auto cart__wrap grid grid-cols-1 gap-7 bg-white pt-10 px-2 pb-20 lg:grid-cols-3">
-        <div class="cart__inner grid gap-7 lg:col-start-1 lg:col-end-3">
+        <spinner-component v-if="loading" />
+        <div v-if="isEmpty" class="mx-auto text-2xl">
+          EMPTY
+        </div>
+        <div v-else class="cart__inner grid gap-7 lg:col-start-1 lg:col-end-3">
           <article v-for="product in getUserCarts" :key="product.id" class="cart__card flex relative shadow-md">
             <div class="cart__card__img w-140 h-full md:w-260">
               <img :src="require(`~/assets/products/${product.img}.jpg`)" :alt="product.title" class="block w-inherit h-inherit object-cover" />
@@ -62,7 +64,7 @@
             </div>
           </article>
           <div class="cart__actions text-center md:mr-11">
-            <button-component class="mr-2 text-xs text-gray-500 py-2 px-4 border-1 border-gray-500 cursor-pointer bg-transparent transition duration-500 hover:bg-black hover:text-white ease-out md:text-sm md:uppercase">
+            <button-component class="mr-2 text-xs text-gray-500 py-2 px-4 border-1 border-gray-500 cursor-pointer bg-transparent transition duration-500 hover:bg-black hover:text-white ease-out md:text-sm md:uppercase" @click="clearCarts">
               Clear shopping cart
             </button-component>
             <button-component class="mr-0 text-xs text-gray-500 py-2 px-4 border-1 border-gray-500 cursor-pointer bg-transparent transition duration-500 hover:bg-black hover:text-white ease-out md:text-sm md:uppercase">
@@ -111,17 +113,20 @@ export default {
   components: {
     CloseIcon
   },
-  asyncData ({ store }) {
-    return store.dispatch('fetchCarts');
+  asyncData ({ store, route }) {
+    const path = route.path;
+    store.dispatch('fetchCarts');
+    return { path };
   },
   data () {
     return {
       color: null,
-      isDesktop: false
+      isEmpty: false,
+      loading: true
     };
   },
   head: {
-    title: 'Cart | ClothesShop'
+    title: 'Cart'
   },
   computed: {
     getUserCarts () {
@@ -131,23 +136,20 @@ export default {
       return this.$store.getters.getTotalPrice;
     }
   },
-  mounted () {
-    window.addEventListener('resize', this.checkView);
-    this.checkView();
-  },
-  beforeDestroy () {
-    window.removeEventListener('resize', this.checkView);
+  watch: {
+    getUserCarts () {
+      this.loading = true;
+      if (this.getUserCarts.length !== 0) {
+        this.isEmpty = false;
+      } else {
+        this.isEmpty = true;
+      }
+      this.loading = false;
+    }
   },
   methods: {
     select (option) {
       this.color = option;
-    },
-    checkView () {
-      if (document.documentElement.clientWidth > 768) {
-        this.isDesktop = true;
-      } else {
-        this.isDesktop = false;
-      }
     },
     addProduct (productId) {
       this.$store.dispatch('addOneProduct', productId);
@@ -162,6 +164,9 @@ export default {
     },
     removeProduct (product) {
       this.$store.dispatch('removeProduct', product);
+    },
+    clearCarts () {
+      this.$store.dispatch('clearCarts');
     }
   }
 };

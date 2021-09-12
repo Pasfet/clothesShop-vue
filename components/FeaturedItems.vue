@@ -11,10 +11,10 @@
       </div>
       <card-component
         :products="currentProductsList"
-        @add-to-cart="addProduct"
+        @addToCart="addProduct"
       />
       <div class="text-center mt-14 mb-28">
-        <NuxtLink to="#" class="inline-block no-underline text-base text-primary py-4 px-10 border-1 border-primary transition duration-500 hover:text-white hover:bg-primary">
+        <NuxtLink to="/catalog" class="inline-block no-underline text-base text-primary py-4 px-10 border-1 border-primary transition duration-500 hover:text-white hover:bg-primary">
           Browse All Product
         </NuxtLink>
       </div>
