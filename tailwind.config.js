@@ -1,6 +1,7 @@
 module.exports = {
   purge: ['./components/**/*.{vue,js}', './pages/**/*.vue', './nuxt.config.js'],
   darkMode: false,
+  important: true,
   theme: {
     maxWidth: {
       '5xl': '1140px'
@@ -39,13 +40,15 @@ module.exports = {
         '32px': '32px',
         '40px': '40px',
         90: '90px',
-        420: '420px'
+        420: '420px',
+        768: '768px'
       },
       maxWidth: {
         270: '270px',
         310: '310px',
         360: '360px',
-        400: '400px'
+        400: '400px',
+        550: '550px'
       },
       width: {
         '20px': '20px',
@@ -58,7 +61,8 @@ module.exports = {
         230: '230px',
         260: '260px',
         345: '345px',
-        360: '360px'
+        360: '360px',
+        1140: '1140px'
       },
       backgroundImage: {
         'index-intro': "url('~assets/bg-intro.png')",

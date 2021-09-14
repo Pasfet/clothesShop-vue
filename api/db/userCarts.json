@@ -1,16 +1,43 @@
 {
-    "amount": 400,
-    "countGoods": 2,
+    "amount": 370,
+    "countGoods": 3,
     "products": [
         {
             "quantity": 2,
-            "id": 1630702205836,
-            "title": "T-shirt red",
+            "id": 1630702280404,
+            "title": "T-shirt sleeve",
             "category": "kids",
             "category_name": "t-shirts",
-            "img": "kids-tshirt-red",
+            "img": [
+                "kids-tshirt-sleeve",
+                "kids-tshirt-sleeve"
+            ],
             "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-            "price": 200,
+            "price": 150,
+            "colors": [
+                "red",
+                "white",
+                "black"
+            ],
+            "size": [
+                "s",
+                "m",
+                "xl",
+                "2xl"
+            ]
+        },
+        {
+            "quantity": 1,
+            "id": 1630702404457,
+            "title": "T-shirt print scuba",
+            "category": "mens",
+            "category_name": "t-shirts",
+            "img": [
+                "mens-tshirt-scuba",
+                "mens-tshirt-scuba"
+            ],
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            "price": 70,
             "colors": [
                 "red",
                 "white",

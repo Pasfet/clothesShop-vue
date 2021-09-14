@@ -1,7 +1,7 @@
 <template>
-  <article class="flex justify-between items-center">
+  <article class="flex justify-between items-center p-3 rounded-lg transition duration-500 hover:bg-gray-100">
     <div class="w-24 h-24 rounded-full overflow-hidden">
-      <img :src="require(`~/assets/products/${goods.img}.jpg`)" :alt="goods.title" class="w-inherit h-inherit block object-cover" />
+      <img :src="require(`~/assets/products/${goods.img[0]}.jpg`)" :alt="goods.title" class="w-inherit h-inherit block object-cover" />
     </div>
     <div class="text-lg">
       {{ goods.title }}

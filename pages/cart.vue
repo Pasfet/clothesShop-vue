@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="flex flex-col min-h-screen flex-grow">
     <header-component />
     <breadcrumb-component :path="path" />
     <main>
@@ -11,7 +11,7 @@
         <div v-else class="cart__inner grid gap-7 lg:col-start-1 lg:col-end-3">
           <article v-for="product in getUserCarts" :key="product.id" class="cart__card flex relative shadow-md">
             <div class="cart__card__img w-140 h-full md:w-260">
-              <img :src="require(`~/assets/products/${product.img}.jpg`)" :alt="product.title" class="block w-inherit h-inherit object-cover" />
+              <img :src="require(`~/assets/products/${product.img[0]}.jpg`)" :alt="product.title" class="block w-inherit h-inherit object-cover" />
             </div>
             <div class="cart__card__content flex flex-col justify-around items-start pt-4 pr-7 pb-2 pl-2 md:justify-between md:pt-4 md:px-7 md:mb-5">
               <button-component class="cart__card__content__icon border-none bg-transparent absolute top-2 right-2 cursor-pointer" @click="removeProduct(product)">
@@ -67,7 +67,7 @@
             <button-component class="mr-2 text-xs text-gray-500 py-2 px-4 border-1 border-gray-500 cursor-pointer bg-transparent transition duration-500 hover:bg-black hover:text-white ease-out md:text-sm md:uppercase" @click="clearCarts">
               Clear shopping cart
             </button-component>
-            <button-component class="mr-0 text-xs text-gray-500 py-2 px-4 border-1 border-gray-500 cursor-pointer bg-transparent transition duration-500 hover:bg-black hover:text-white ease-out md:text-sm md:uppercase">
+            <button-component class="mr-0 text-xs text-gray-500 py-2 px-4 border-1 border-gray-500 cursor-pointer bg-transparent transition duration-500 hover:bg-black hover:text-white ease-out md:text-sm md:uppercase" @click="continueShop">
               Continue shopping
             </button-component>
           </div>
@@ -107,7 +107,7 @@
 </template>
 
 <script>
-import CloseIcon from '@/assets/cart/close.svg?inline';
+import CloseIcon from '@/assets/svg/close.svg?inline';
 export default {
   name: 'CartPage',
   components: {
@@ -167,6 +167,9 @@ export default {
     },
     clearCarts () {
       this.$store.dispatch('clearCarts');
+    },
+    continueShop () {
+      this.$router.push('/catalog');
     }
   }
 };

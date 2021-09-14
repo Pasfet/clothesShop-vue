@@ -29,9 +29,8 @@ router.delete('/carts/:id', (req, res) => {
   handlerCarts(req, res, 'delete', 'api/db/userCarts.json');
 });
 
-router.post('/carts/deleteCarts', (req, res) => {
-  console.log(req);
-  handlerCarts(req, res, 'deleteCarts', 'api/db/userCarts.json');
+router.post('/carts/clearCarts', (req, res) => {
+  handlerCarts(req, res, 'clearCarts', 'api/db/userCarts.json');
 });
 
 module.exports = router;

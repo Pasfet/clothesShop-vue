@@ -67,7 +67,7 @@ export default {
 .custom-select .selected {
   background-color: transparent;
   border-radius: 5px;
-  border: 1px solid #e2e2e2;
+  border: 1px solid transparent;
   color: #000;
   padding-left: 15px;
   cursor: pointer;

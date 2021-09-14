@@ -77,7 +77,7 @@ export const actions = {
       commit('addToUserCarts', product);
     }
   },
-  async addOneProduct ({ commit }, productId) { // REFACTOR
+  async addOneProduct ({ commit }, productId) {
     const res = await this.$axios.$put(`/api/carts/${productId}`);
     if (res.result === 1) {
       commit('addToOneProductToUserCarts', productId);

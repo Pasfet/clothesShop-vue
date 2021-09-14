@@ -10,6 +10,7 @@ module.exports = {
     'json'
   ],
   transform: {
+    '.+\\.(css|styl|less|sass|scss|png|jpg|jpeg|mp3|ttf|woff|woff2)$': 'jest-transform-stub',
     '^.+\\.js$': 'babel-jest',
     '.*\\.(vue)$': 'vue-jest'
   },
@@ -19,4 +20,4 @@ module.exports = {
     '<rootDir>/pages/**/*.vue'
   ],
   testEnvironment: 'jsdom'
-}
+};
