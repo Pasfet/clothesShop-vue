@@ -62,6 +62,13 @@ export const mutations = {
   },
   clearUserCarts (state) {
     state.userCarts = [];
+  },
+  sortByPrice (state, sortPrice) {
+    if (sortPrice) {
+      state.productsList = state.productsList.sort((prev, next) => prev.price - next.price);
+    } else {
+      state.productsList = state.productsList.sort((prev, next) => next.price - prev.price);
+    }
   }
 };
 

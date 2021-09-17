@@ -1,19 +1,19 @@
 {
-    "amount": 210,
-    "countGoods": 3,
+    "amount": 200,
+    "countGoods": 1,
     "products": [
         {
-            "quantity": 3,
-            "id": 1630702404457,
-            "title": "T-shirt print scuba",
-            "category": "mens",
+            "quantity": 1,
+            "id": 1630702205836,
+            "title": "T-shirt red",
+            "category": "kids",
             "category_name": "t-shirts",
             "img": [
-                "mens-tshirt-scuba",
-                "mens-tshirt-scuba"
+                "kids-tshirt-red",
+                "kids-tshirt-red"
             ],
             "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-            "price": 70,
+            "price": 200,
             "colors": [
                 "red",
                 "white",

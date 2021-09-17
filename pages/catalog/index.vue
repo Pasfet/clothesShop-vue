@@ -17,6 +17,9 @@
           :tooltip-style="tooltipStyle"
           class="my-8"
         />
+        <button-component class="py-2 px-5 my-5 border-1 border-primary transition duration-500 hover hover:bg-primary hover:text-white" @click="sortByPrice">
+          Sort by price
+        </button-component>
       </client-only>
       <card-component
         :products="currentProductsList"
@@ -54,6 +57,7 @@ export default {
       perPage: 6,
       currentPage: 1,
       loading: true,
+      sortPrice: false,
       rangeInput: []
     };
   },
@@ -119,6 +123,10 @@ export default {
     },
     onPageChange (page) {
       this.currentPage = page;
+    },
+    sortByPrice () {
+      this.sortPrice = !this.sortPrice;
+      this.$store.commit('sortByPrice', this.sortPrice);
     }
   }
 };

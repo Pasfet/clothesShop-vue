@@ -2,12 +2,14 @@ import Vuex from 'vuex';
 import { shallowMount, enableAutoDestroy, createLocalVue } from '@vue/test-utils';
 import CatalogPage from '@/pages/catalog/index.vue';
 import Spinner from '@/components/SpinnerComponent.vue';
+import Button from '@/components/ButtonComponent.vue';
 
 describe('catalog page test', () => {
   enableAutoDestroy(beforeEach);
   let wrapper;
   let store;
   let getters;
+  let mutations;
   let actions;
   let localVue;
 
@@ -21,17 +23,25 @@ describe('catalog page test', () => {
       getUserCarts: () => [{ id: 1, title: 'test2', price: 500, quantity: 1 }]
     };
 
+    mutations = {
+      sortByPrice: jest.fn()
+    };
+
     actions = {
       fetchProducts: jest.fn(),
       addOneProduct: jest.fn(),
-      addProduct: jest.fn()
+      addProduct: jest.fn(),
     };
 
     store = new Vuex.Store({
       getters,
+      mutations,
       actions
     });
   });
+
+  const findButtonByText = text =>
+    wrapper.findAll('button').wrappers.find(w => w.text() === text);
 
   const createComponent = () => {
     wrapper = shallowMount(CatalogPage, {
@@ -42,6 +52,7 @@ describe('catalog page test', () => {
         'breadcrumb-component': true,
         'spinner-component': Spinner,
         'vue-range': true,
+        'button-component': Button,
         'card-component': true,
         'advantages-block': true,
         'pagination-component': true,
@@ -93,5 +104,22 @@ describe('catalog page test', () => {
     wrapper.find('pagination-component-stub').vm.$emit('pagechanged', 2);
 
     expect(wrapper.vm.currentPage).toBe(2);
+  });
+
+  it('sort by value increase', async () => {
+    createComponent();
+
+    await findButtonByText('Sort by price').trigger('click');
+
+    expect(mutations.sortByPrice).toHaveBeenCalledWith(expect.any(Object), true);
+  });
+
+  it('sorting by cost reduction', async () => {
+    createComponent();
+
+    await findButtonByText('Sort by price').trigger('click');
+    await findButtonByText('Sort by price').trigger('click');
+
+    expect(mutations.sortByPrice).toHaveBeenCalledWith(expect.any(Object), false);
   });
 });
