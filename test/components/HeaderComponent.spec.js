@@ -1,5 +1,5 @@
 import Vuex from 'vuex';
-import { shallowMount, enableAutoDestroy, createLocalVue, RouterLinkStub  } from '@vue/test-utils';
+import { shallowMount, enableAutoDestroy, createLocalVue, RouterLinkStub } from '@vue/test-utils';
 import { nextTick } from 'vue';
 import Header from '@/components/HeaderComponent.vue';
 import SearchComponent from '@/components/SearchComponent.vue';

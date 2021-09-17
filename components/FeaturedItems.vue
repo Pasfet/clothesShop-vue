@@ -52,7 +52,7 @@ export default {
     }
   },
   methods: {
-    addProduct (product) { // REFACTOR
+    addProduct (product) {
       const productId = +product.id;
       const find = this.getCart.find(item => item.id === productId);
       if (find) {

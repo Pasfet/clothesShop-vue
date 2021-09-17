@@ -2,7 +2,6 @@ import Vuex from 'vuex';
 import { shallowMount, enableAutoDestroy, createLocalVue, RouterLinkStub } from '@vue/test-utils';
 import SearchComponent from '@/components/SearchComponent.vue';
 import ButtonComponent from '@/components/ButtonComponent.vue';
-// import SearchCard from '@/components/SearchCard.vue';
 
 describe('Search component test', () => {
   enableAutoDestroy(beforeEach);

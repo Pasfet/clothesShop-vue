@@ -8,7 +8,7 @@
             class="py-2 px-4 bg-transparent border-1 border-white text-white flex items-center text-xs transition duration-500  transform hover:scale-95"
             @click="addProduct(product)"
           >
-            <cart-icon class="w-25 h-25 mr-2" />
+            <img src="~/assets/cards/cart.svg" alt="add" class="w-25 h-25 mr-2" />
             Add to card
           </button-component>
         </div>
@@ -31,11 +31,9 @@
 </template>
 
 <script>
-import CartIcon from '@/assets/cards/cart.svg?inline';
 
 export default {
   name: 'CardComponent',
-  components: { CartIcon },
   props: {
     products: {
       type: Array,

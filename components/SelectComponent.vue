@@ -7,11 +7,8 @@
       <div
         v-for="(option, i) of options"
         :key="i"
-        @click="
-          selected = option;
-          open = false;
-          $emit('input', option);
-        "
+        data-testid="select"
+        @click="select(option)"
       >
         {{ option.toUpperCase() }}
       </div>
@@ -50,7 +47,14 @@ export default {
   },
   mounted () {
     this.$emit('input', this.selected);
-  }
+  },
+  methods: {
+    select (option) {
+      this.selected = option;
+      this.open = false;
+      this.$emit('input', option);
+    }
+  },
 };
 </script>
 

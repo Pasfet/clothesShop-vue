@@ -5,7 +5,6 @@ describe('SearchCard test', () => {
   enableAutoDestroy(beforeEach);
   let wrapper;
 
-  jest.mock('~/assets/products/');
 
   const createComponent = () => {
     wrapper = shallowMount(SearchCard, {
@@ -21,7 +20,13 @@ describe('SearchCard test', () => {
 
   it('render card', () => {
     createComponent();
-    console.log(wrapper.html());
     expect(wrapper.exists()).toBe(true);
+  });
+
+  it('render goods', () => {
+    createComponent();
+
+    expect(wrapper.text()).toContain('brera');
+    expect(wrapper.text()).toContain('100');
   });
 });

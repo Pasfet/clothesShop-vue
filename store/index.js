@@ -20,6 +20,12 @@ export const getters = {
   },
   getTotalPrice (state) {
     return state.userCarts.reduce((acc, cur) => (acc += cur.quantity * cur.price), 0);
+  },
+  getMinMaxPrice (state) {
+    const min = state.productsList.reduce((prev, curr) => prev.price < curr.price ? prev : curr);
+    const max = state.productsList.reduce((prev, curr) => prev.price > curr.price ? prev : curr);
+
+    return [min.price, max.price];
   }
 };
 

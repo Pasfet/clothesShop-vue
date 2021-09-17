@@ -31,8 +31,8 @@ export default {
   },
   computed: {
     getCurrentPage () {
-      const pathArr = this.path.split('/');
       const curPage = [];
+      const pathArr = this.path.split('/');
       pathArr.forEach((link) => {
         if (link) {
           curPage.push(link);

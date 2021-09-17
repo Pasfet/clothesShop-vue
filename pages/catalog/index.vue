@@ -4,13 +4,27 @@
     <breadcrumb-component :path="path" />
     <spinner-component v-if="loading" />
     <main v-show="!loading" class="max-w-5xl mx-auto py-3">
+      <client-only>
+        <vue-range
+          v-model="range"
+          :lazy="true"
+          :min="rangeInput[0]"
+          :max="rangeInput[1]"
+          :formatter="(rangeInput) => `$${rangeInput}`"
+          :tooltip-merge="false"
+          :enable-cross="false"
+          :process-style="processStyle"
+          :tooltip-style="tooltipStyle"
+          class="my-8"
+        />
+      </client-only>
       <card-component
         :products="currentProductsList"
         @addToCart="addProduct"
       />
       <pagination-component
         class="mx-auto"
-        :total-length="getProductsList.length"
+        :total-length="getFilterProducts.length"
         :current-page="currentPage"
         :per-page="perPage"
         @pagechanged="onPageChange"
@@ -23,18 +37,24 @@
 </template>
 
 <script>
+import ClientOnly from 'vue-client-only';
 export default {
   name: 'CatalogPage',
-  asyncData ({ route, store }) {
+  components: {
+    ClientOnly
+  },
+  async asyncData ({ route, store }) {
     const path = route.path;
-    store.dispatch('fetchProducts');
-    return { path };
+    await store.dispatch('fetchProducts');
+    const range = await store.getters.getMinMaxPrice;
+    return { path, range };
   },
   data () {
     return {
       perPage: 6,
       currentPage: 1,
-      loading: true
+      loading: true,
+      rangeInput: []
     };
   },
   head: {
@@ -47,9 +67,15 @@ export default {
     getCart () {
       return this.$store.getters.getUserCarts;
     },
-    currentProductsList () {
+    getFilterProducts () {
       if (this.getProductsList) {
-        return this.getProductsList.slice(this.startIndex, this.endIndex);
+        return this.getProductsList.filter(goods => goods.price >= this.range[0] && goods.price <= this.range[1]);
+      }
+      return [];
+    },
+    currentProductsList () {
+      if (this.getFilterProducts) {
+        return this.getFilterProducts.slice(this.startIndex, this.endIndex);
       }
       return [];
     },
@@ -58,13 +84,30 @@ export default {
     },
     endIndex () {
       return this.currentPage * this.perPage;
+    },
+    processStyle () {
+      return {
+        backgroundColor: '#f16d7f'
+      };
+    },
+    tooltipStyle () {
+      return {
+        backgroundColor: '#f16d7f',
+        borderColor: '#f16d7f'
+      };
+    }
+  },
+  watch: {
+    range () {
+      this.currentPage = 1;
     }
   },
   mounted () {
+    this.rangeInput = this.range;
     this.loading = false;
   },
   methods: {
-    addProduct (product) { // REFACTOR
+    addProduct (product) {
       const productId = +product.id;
       const find = this.getCart.find(item => item.id === productId);
       if (find) {
