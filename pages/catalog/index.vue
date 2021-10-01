@@ -10,21 +10,21 @@
           :lazy="true"
           :min="rangeInput[0]"
           :max="rangeInput[1]"
-          :formatter="(rangeInput) => `$${rangeInput}`"
+          :formatter="rangeInput => `$${rangeInput}`"
           :tooltip-merge="false"
           :enable-cross="false"
           :process-style="processStyle"
           :tooltip-style="tooltipStyle"
           class="my-8"
         />
-        <button-component class="py-2 px-5 my-5 border-1 border-primary transition duration-500 hover hover:bg-primary hover:text-white" @click="sortByPrice">
+        <button-component
+          class="py-2 px-5 my-5 border-1 border-primary transition duration-500 hover hover:bg-primary hover:text-white"
+          @click="sortByPrice"
+        >
           Sort by price
         </button-component>
       </client-only>
-      <card-component
-        :products="currentProductsList"
-        @addToCart="addProduct"
-      />
+      <card-component :products="currentProductsList" @addToCart="addProduct" />
       <pagination-component
         class="mx-auto"
         :total-length="getFilterProducts.length"
@@ -46,13 +46,13 @@ export default {
   components: {
     ClientOnly
   },
-  async asyncData ({ route, store }) {
+  async asyncData({ route, store }) {
     const path = route.path;
     await store.dispatch('fetchProducts');
     const range = await store.getters.getMinMaxPrice;
     return { path, range };
   },
-  data () {
+  data() {
     return {
       perPage: 6,
       currentPage: 1,
@@ -65,36 +65,38 @@ export default {
     title: 'Catalog'
   },
   computed: {
-    getProductsList () {
+    getProductsList() {
       return this.$store.getters.getProducts;
     },
-    getCart () {
+    getCart() {
       return this.$store.getters.getUserCarts;
     },
-    getFilterProducts () {
+    getFilterProducts() {
       if (this.getProductsList) {
-        return this.getProductsList.filter(goods => goods.price >= this.range[0] && goods.price <= this.range[1]);
+        return this.getProductsList.filter(
+          goods => goods.price >= this.range[0] && goods.price <= this.range[1]
+        );
       }
       return [];
     },
-    currentProductsList () {
+    currentProductsList() {
       if (this.getFilterProducts) {
         return this.getFilterProducts.slice(this.startIndex, this.endIndex);
       }
       return [];
     },
-    startIndex () {
+    startIndex() {
       return (this.currentPage - 1) * this.perPage;
     },
-    endIndex () {
+    endIndex() {
       return this.currentPage * this.perPage;
     },
-    processStyle () {
+    processStyle() {
       return {
         backgroundColor: '#f16d7f'
       };
     },
-    tooltipStyle () {
+    tooltipStyle() {
       return {
         backgroundColor: '#f16d7f',
         borderColor: '#f16d7f'
@@ -102,16 +104,16 @@ export default {
     }
   },
   watch: {
-    range () {
+    range() {
       this.currentPage = 1;
     }
   },
-  mounted () {
+  mounted() {
     this.rangeInput = this.range;
     this.loading = false;
   },
   methods: {
-    addProduct (product) {
+    addProduct(product) {
       const productId = +product.id;
       const find = this.getCart.find(item => item.id === productId);
       if (find) {
@@ -121,10 +123,10 @@ export default {
         this.$store.dispatch('addProduct', newProduct);
       }
     },
-    onPageChange (page) {
+    onPageChange(page) {
       this.currentPage = page;
     },
-    sortByPrice () {
+    sortByPrice() {
       this.sortPrice = !this.sortPrice;
       this.$store.commit('sortByPrice', this.sortPrice);
     }

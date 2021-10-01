@@ -18,9 +18,10 @@ module.exports = {
       {
         html: {
           void: 'always',
-          normal: 'never',
+          normal: 'never'
         }
       }
-    ]
+    ],
+    'space-before-function-paren': ['error', 'never']
   }
 };

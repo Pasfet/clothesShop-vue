@@ -12,7 +12,8 @@
     "test": "jest"
   },
   "prettier": {
-    "singleQuote": true
+    "singleQuote": true,
+    "bracketSpacing": true
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.13.6",

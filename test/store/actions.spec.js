@@ -8,7 +8,7 @@ let mockAxiosDeleteResult;
 jest.mock('axios', () => ({
   $get: jest.fn(() => Promise.resolve(mockAxiosGetResult)),
   $post: jest.fn(() => Promise.resolve(mockAxiosPostResult)),
-  $put: jest.fn(() => Promise.resolve(mockAxiosPutResult)),
+  $patch: jest.fn(() => Promise.resolve(mockAxiosPutResult)),
   $delete: jest.fn(() => Promise.resolve(mockAxiosDeleteResult))
 }));
 
@@ -59,7 +59,10 @@ describe('store', () => {
 
       await testedAction(context, null);
 
-      expect(context.commit).toHaveBeenCalledWith('setUserCarts', expect.any(Object));
+      expect(context.commit).toHaveBeenCalledWith(
+        'setUserCarts',
+        expect.any(Object)
+      );
     });
 
     it('addProduct', async () => {
@@ -83,7 +86,10 @@ describe('store', () => {
 
       await testedAction(context, productId);
 
-      expect(context.commit).toHaveBeenCalledWith('addToOneProductToUserCarts', productId);
+      expect(context.commit).toHaveBeenCalledWith(
+        'addToOneProductToUserCarts',
+        productId
+      );
     });
 
     it('minusOneProduct', async () => {
@@ -95,7 +101,10 @@ describe('store', () => {
 
       await testedAction(context, productId);
 
-      expect(context.commit).toHaveBeenCalledWith('minusOneProductFromUserCarts', productId);
+      expect(context.commit).toHaveBeenCalledWith(
+        'minusOneProductFromUserCarts',
+        productId
+      );
     });
 
     it('removeProduct', async () => {
@@ -107,7 +116,10 @@ describe('store', () => {
 
       await testedAction(context, product);
 
-      expect(context.commit).toHaveBeenCalledWith('removeProductFromUserCarts', product);
+      expect(context.commit).toHaveBeenCalledWith(
+        'removeProductFromUserCarts',
+        product
+      );
     });
 
     it('clearCarts', async () => {

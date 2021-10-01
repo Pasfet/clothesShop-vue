@@ -4,9 +4,17 @@
     <breadcrumb-component :path="product.title" />
     <spinner-component v-if="loading" />
     <main v-show="!loading">
-      <swiper ref="mySwiper" :options="swiperOptions" class="md:h-768 bg-breadcrumbs-bg xl:pb-6 xl:overflow-x-hidden">
+      <swiper
+        ref="mySwiper"
+        :options="swiperOptions"
+        class="md:h-768 bg-breadcrumbs-bg xl:pb-6 xl:overflow-x-hidden"
+      >
         <swiper-slide v-for="(img, idx) in product.img" :key="idx">
-          <img :src="require(`~/assets/products/${img}.jpg`)" :alt="product" class="h-inherit mx-auto" />
+          <img
+            :src="require(`~/assets/products/${img}.jpg`)"
+            :alt="product"
+            class="h-inherit mx-auto"
+          />
         </swiper-slide>
         <div slot="button-prev" class="swiper-button-prev"></div>
         <div slot="button-next" class="swiper-button-next"></div>
@@ -19,7 +27,7 @@
 </template>
 <script>
 export default {
-  async asyncData ({ params, redirect, $axios, store }) {
+  async asyncData({ params, redirect, $axios, store }) {
     store.dispatch('fetchCarts');
     const goods = await $axios.$get('/api/products');
     const goodsList = await JSON.parse(goods);
@@ -30,7 +38,7 @@ export default {
       redirect('/catalog');
     }
   },
-  data () {
+  data() {
     return {
       loading: true,
       swiperOptions: {
@@ -42,18 +50,18 @@ export default {
     };
   },
   computed: {
-    swiper () {
+    swiper() {
       return this.$refs.mySwiper.$swiper;
     },
-    getCart () {
+    getCart() {
       return this.$store.getters.getUserCarts;
     }
   },
-  mounted () {
+  mounted() {
     this.loading = false;
   },
   methods: {
-    addProduct (product) {
+    addProduct(product) {
       const productId = +product.id;
       const find = this.getCart.find(item => item.id === productId);
       if (find) {
@@ -67,26 +75,29 @@ export default {
 };
 </script>
 
-<style lang='scss'>
-.swiper-button-next, .swiper-container-rtl .swiper-button-prev {
-    right: 0;
-  }
-.swiper-button-prev, .swiper-container-rtl .swiper-button-next {
-    left: 0;
+<style lang="scss">
+.swiper-button-next,
+.swiper-container-rtl .swiper-button-prev {
+  right: 0;
+}
+.swiper-button-prev,
+.swiper-container-rtl .swiper-button-next {
+  left: 0;
 }
 
-.swiper-button-next, .swiper-button-prev {
-    background: rgba(42, 42, 42, 0.15);
-    border-radius: 5px;
-    width: 47px;
-    height: 47px;
-    &:hover {
-      background: rgba(42, 42, 42, 0.9);
-    }
+.swiper-button-next,
+.swiper-button-prev {
+  background: rgba(42, 42, 42, 0.15);
+  border-radius: 5px;
+  width: 47px;
+  height: 47px;
+  &:hover {
+    background: rgba(42, 42, 42, 0.9);
+  }
 }
-.swiper-button-next::after, .swiper-button-prev::after {
+.swiper-button-next::after,
+.swiper-button-prev::after {
   font-size: 24px;
   color: #f16d7f;
 }
-
 </style>

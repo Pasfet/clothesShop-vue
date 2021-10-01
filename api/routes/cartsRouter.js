@@ -17,11 +17,11 @@ router.post('/carts', (req, res) => {
   handlerCarts(req, res, 'add', 'api/db/userCarts.json');
 });
 
-router.put('/carts/:id', (req, res) => {
+router.patch('/carts/:id', (req, res) => {
   handlerCarts(req, res, 'addOne', 'api/db/userCarts.json');
 });
 
-router.put('/carts/:id/minus', (req, res) => {
+router.patch('/carts/:id/-', (req, res) => {
   handlerCarts(req, res, 'minusOne', 'api/db/userCarts.json');
 });
 
@@ -29,7 +29,7 @@ router.delete('/carts/:id', (req, res) => {
   handlerCarts(req, res, 'delete', 'api/db/userCarts.json');
 });
 
-router.post('/carts/clearCarts', (req, res) => {
+router.post('/carts/clear', (req, res) => {
   handlerCarts(req, res, 'clearCarts', 'api/db/userCarts.json');
 });
 
