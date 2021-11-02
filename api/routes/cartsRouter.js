@@ -17,12 +17,8 @@ router.post('/carts', (req, res) => {
   handlerCarts(req, res, 'add', 'api/db/userCarts.json');
 });
 
-router.patch('/carts/:id', (req, res) => {
-  handlerCarts(req, res, 'addOne', 'api/db/userCarts.json');
-});
-
-router.patch('/carts/:id/-', (req, res) => {
-  handlerCarts(req, res, 'minusOne', 'api/db/userCarts.json');
+router.patch('/carts', (req, res) => {
+  handlerCarts(req, res, 'change', 'api/db/userCarts.json');
 });
 
 router.delete('/carts/:id', (req, res) => {

@@ -65,7 +65,10 @@ export default {
       const productId = +product.id;
       const find = this.getCart.find(item => item.id === productId);
       if (find) {
-        this.$store.dispatch('addOneProduct', product.id);
+        this.$store.dispatch('changeCarts', {
+          change: product.id,
+          type: 'add'
+        });
       } else {
         const newProduct = Object.assign({ quantity: 1 }, product);
         this.$store.dispatch('addProduct', newProduct);

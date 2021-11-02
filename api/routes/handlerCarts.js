@@ -3,8 +3,7 @@ const cartActions = require('./cartsActions');
 
 const actions = {
   add: cartActions.add,
-  addOne: cartActions.addOneProduct,
-  minusOne: cartActions.minusOneProduct,
+  change: cartActions.actionsGood,
   delete: cartActions.removeProduct,
   clearCarts: cartActions.clearCarts
 };
@@ -15,7 +14,7 @@ const handler = (req, res, action, file) => {
       res.sendStatus(404, JSON.stringify({ result: 0, text: err }));
     } else {
       const newCart = actions[action](JSON.parse(data), req);
-      fs.writeFile(file, newCart, (err) => {
+      fs.writeFile(file, newCart, err => {
         if (err) {
           res.sendStatus(404, JSON.stringify({ result: 0, text: err }));
         } else {

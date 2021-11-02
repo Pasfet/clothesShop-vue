@@ -104,16 +104,10 @@ export const actions = {
       commit('addToUserCarts', product);
     }
   },
-  async addOneProduct({ commit }, productId) {
-    const res = await this.$axios.$patch(`/api/carts/${productId}`);
+  async changeCarts({ dispatch }, change) {
+    const res = await this.$axios.$patch('/api/carts', change);
     if (res.result === 1) {
-      commit('addToOneProductToUserCarts', productId);
-    }
-  },
-  async minusOneProduct({ commit }, productId) {
-    const res = await this.$axios.$patch(`/api/carts/${productId}/-`);
-    if (res.result === 1) {
-      commit('minusOneProductFromUserCarts', productId);
+      dispatch('fetchCarts');
     }
   },
   async removeProduct({ commit }, product) {

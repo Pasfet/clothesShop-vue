@@ -1,7 +1,5 @@
 <template>
-  <article
-    class="cart__card flex relative shadow-md"
-  >
+  <article class="cart__card flex relative shadow-md">
     <div class="cart__card__img w-140 h-full md:w-260">
       <img
         :src="require(`~/assets/products/${product.img[0]}.jpg`)"
@@ -97,27 +95,30 @@ export default {
       required: true
     }
   },
-  data () {
+  data() {
     return {
       color: null
     };
   },
   methods: {
-    select (option) {
+    select(option) {
       this.color = option;
     },
-    addProduct (productId) {
-      this.$store.dispatch('addOneProduct', productId);
+    addProduct(productId) {
+      this.$store.dispatch('changeCarts', { change: productId, type: 'add' });
     },
-    minusProduct (product) {
+    minusProduct(product) {
       if (product.quantity === 1) {
         this.$store.dispatch('removeProduct', product);
       }
       if (product.quantity > 1) {
-        this.$store.dispatch('minusOneProduct', product.id);
+        this.$store.dispatch('changeCarts', {
+          change: product.id,
+          type: 'minus'
+        });
       }
     },
-    removeProduct (product) {
+    removeProduct(product) {
       this.$store.dispatch('removeProduct', product);
     }
   }

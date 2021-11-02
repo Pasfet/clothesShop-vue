@@ -9,12 +9,12 @@
           Shop for items based on what we featured in this week
         </p>
       </div>
-      <card-component
-        :products="currentProductsList"
-        @addToCart="addProduct"
-      />
+      <card-component :products="currentProductsList" @addToCart="addProduct" />
       <div class="text-center mt-14 mb-28">
-        <NuxtLink to="/catalog" class="inline-block no-underline text-base text-primary py-4 px-10 border-1 border-primary transition duration-500 hover:text-white hover:bg-primary">
+        <NuxtLink
+          to="/catalog"
+          class="inline-block no-underline text-base text-primary py-4 px-10 border-1 border-primary transition duration-500 hover:text-white hover:bg-primary"
+        >
           Browse All Product
         </NuxtLink>
       </div>
@@ -25,38 +25,41 @@
 <script>
 export default {
   name: 'FeaturedItems',
-  data () {
+  data() {
     return {
       perPage: 6,
       currentPage: 1
     };
   },
   computed: {
-    getProductsList () {
+    getProductsList() {
       return this.$store.getters.getProducts;
     },
-    startIndex () {
+    startIndex() {
       return (this.currentPage - 1) * this.perPage;
     },
-    endIndex () {
+    endIndex() {
       return this.currentPage * this.perPage;
     },
-    currentProductsList () {
+    currentProductsList() {
       if (this.getProductsList) {
         return this.getProductsList.slice(this.startIndex, this.endIndex);
       }
       return [];
     },
-    getCart () {
+    getCart() {
       return this.$store.getters.getUserCarts;
     }
   },
   methods: {
-    addProduct (product) {
+    addProduct(product) {
       const productId = +product.id;
       const find = this.getCart.find(item => item.id === productId);
       if (find) {
-        this.$store.dispatch('addOneProduct', product.id);
+        this.$store.dispatch('changeCarts', {
+          change: product.id,
+          type: 'add'
+        });
       } else {
         const newProduct = Object.assign({ quantity: 1 }, product);
         this.$store.dispatch('addProduct', newProduct);
